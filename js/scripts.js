@@ -3,6 +3,9 @@
 function noInputtedWord(word, text) {
   return ((text.trim().length ===0) || (word.trim().length === 0));
 }
+function lowerCaseInclude(element, word) {
+  return (element.toLowerCase().includes(word.toLowerCase()));
+}
 
 // Business Logic
 function wordCounter(text) {
@@ -26,7 +29,7 @@ function numberOfOccurrencesInText(word, text) {
   const wordArray = text.split(" ");
   let wordCount = 0;
   wordArray.forEach(function(element) {
-    if (element.toLowerCase().includes(word.toLowerCase())) {
+    if (lowerCaseInclude(element, word)) {
       wordCount++;
     }
   });
@@ -34,13 +37,13 @@ function numberOfOccurrencesInText(word, text) {
 }
 
 function boldPassage(word, text) {
-  if (noInputtedWord(word,text)){
+  if (noInputtedWord(word,text)) {
     return "";
   }
   let htmlString = "<p>";
   let textArray = text.split(" ");
   textArray.forEach(function(element, index) {
-    if (word === element) {
+    if (lowerCaseInclude(element, word)) {
       htmlString = htmlString.concat("<b>" + element + "</b>");
     } else {
       htmlString = htmlString.concat(element);
